@@ -90,23 +90,44 @@ edited_df_4= st.data_editor(
     disabled=["command", "is_widget"],
     hide_index=True,)
 
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8')
+edited_df_citation_based['Engine']='Citation Based'
+
+edited_df_35['Engine']='gpt 3.5 turbo abstract keywords'
+edited_df_4['Engine']='gpt 4 abstract keywords'
+
+allrated=pd.concat([edited_df_citation_based,edited_df_35,edited_df_4])
+
+allrated['oa_id']=oa_id_sample
+allrated['OG_title']=ogtitle.item()
+
+csv = convert_df(allrated)
 
 
-saved=st.button('Save')
+st.download_button(
+   "Press to Download",
+   csv,
+   "{}.csv".format(oa_id_sample),
+   "text/csv",
+   key='download-csv'
+)
 
-if saved: 
-    edited_df_citation_based['Engine']='Citation Based'
+# saved=st.button('Save')
 
-    edited_df_35['Engine']='gpt 3.5 turbo abstract keywords'
-    edited_df_4['Engine']='gpt 4 abstract keywords'
+# if saved: 
+#     edited_df_citation_based['Engine']='Citation Based'
 
-    allrated=pd.concat([edited_df_citation_based,edited_df_35,edited_df_4])
+#     edited_df_35['Engine']='gpt 3.5 turbo abstract keywords'
+#     edited_df_4['Engine']='gpt 4 abstract keywords'
 
-    allrated['oa_id']=oa_id_sample
-    allrated['OG_title']=ogtitle.item()
+#     allrated=pd.concat([edited_df_citation_based,edited_df_35,edited_df_4])
 
-    allrated['OG_ab']=oGab.item()
-    filename=r"C:\Users\hwang\Desktop\related content API testing\Citation based\rated\{}.csv".format(oa_id_sample)
-    allrated.to_csv(filename)
-    st.write('The Rating is Saved')
-    saved=False 
+#     allrated['oa_id']=oa_id_sample
+#     allrated['OG_title']=ogtitle.item()
+
+#     allrated['OG_ab']=oGab.item()
+#     filename=r"C:\Users\hwang\Desktop\related content API testing\Citation based\rated\{}.csv".format(oa_id_sample)
+#     allrated.to_csv(filename)
+#     st.write('The Rating is Saved')
+#     saved=False 
