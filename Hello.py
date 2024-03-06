@@ -22,13 +22,27 @@ def run():
     st.set_page_config(
         page_title="Compare Citation Based Recommendation and AI based",
         page_icon="👋",
-        layout="wide"
 
     )
     st.header("Citation VS AI keyword",divider='rainbow')
+    st.write('These following recommendation engines are POCs that leverages different form of technology build by SA Frank and the Cortext Team. Due to the nature of the underlying logic of the citation-based recommendation, the current evaluation method could not accurately measure the perofmanece of this new recommendation.
+    Therefore, to get a better understanding the the performance of the citation based recommendation, we decided to take a human evaluation approach')
+    st.divider()
+    st.subheader ('Rating Scale')
+    
+    st.write("Please rate these on a scale of 0-2,
+    0 as the result is not relevant to the target record,
+    1 as the result is covering a single concept from the target record or an average recommendation, 
+    2 as the result is good recommendation or covering two or all main concepts of the target record.")
+    
+    st.divider()
+    st.subheader ('Recommendation Engines')
+    st.write(Citation Based Recommendation
+    
 
 
-    st.write("Please rate these on a scale of 0-2")
+
+
 
     st.sidebar.success("Select an article above.")
 
